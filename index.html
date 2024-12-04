@@ -13,7 +13,7 @@
 <body>
      <header>
           <div class="logo-wrapper">
-               <img src="img/SKILL-RUSH-logo.svg" alt="Skill Rush Logo">
+               <img src="img\SKILL-RUSH logo.svg" alt="Skill Rush Logo">
           </div>
           <nav>
                <ul>
@@ -32,6 +32,11 @@
                               <button class="pause">Pause</button>
                               <button class="reset">Reset</button>
                          </div>
+                    </div>
+                    <div class="random_player">
+                         <h1>Random Player</h1>
+                         <button class="random">Random</button>
+                         <div class="player"></
                     </div>
                </div>
           </section>
@@ -132,7 +137,7 @@
           var timer  = new easytimer.Timer();
           
           $('.timer-controls .start').click(function () {
-               timer.start();
+               timer.start({precision: 'seconds', startValues: {seconds: 0}, target: {seconds: 30}});
           });
 
           $('.timer-controls .pause').click(function () {
