@@ -7,6 +7,7 @@
      <title>SkillUp</title>
      <link rel="stylesheet" href="css/style.css">
      <script src="node_modules/easytimer.js/dist/easytimer.min.js"></script>
+     <script src="node_modules/jquery/dist/jquery.min.js"></script>
 </head>
 
 <body>
@@ -25,10 +26,10 @@
           <section id="timer" class="timer">
                <div class="content">
                     <div class="timer-wrapper">
-                         <div class="text-center card-body" id="basicUsage">00:00:34</div>
+                         <div class="values">00:00:00</div>
                          <div class="timer-controls">
                               <button class="start">Start</button>
-                              <button class="stop">Stop</button>
+                              <button class="pause">Pause</button>
                               <button class="reset">Reset</button>
                          </div>
                     </div>
@@ -126,13 +127,34 @@
           </div>
      </main>
      <script>
-          var timerInstance = new easytimer.Timer();
-          console.log(timerInstance)
-
-          timer.start(/* config */);
-          timer.addEventListener("secondsUpdated", function (e) {
-          $("#basicUsage").html(timer.getTimeValues().toString());
+   // Execute function when body is loaded
+        document.body.onload = function() {
+          var timer  = new easytimer.Timer();
+          
+          $('.timer-controls .start').click(function () {
+               timer.start();
           });
+
+          $('.timer-controls .pause').click(function () {
+               timer.pause();
+          });
+
+          $('.timer-controls .reset').click(function () {
+               timer.reset();
+          });
+     
+          timer.addEventListener('secondsUpdated', function (e) {
+          $('.timer-wrapper .values').html(timer.getTimeValues().toString());
+          });
+
+          timer.addEventListener('started', function (e) {
+          $('.timer-wrapper .values').html(timer.getTimeValues().toString());
+          });
+
+          timer.addEventListener('reset', function (e) {
+          $('.timer-wrapper .values').html(timer.getTimeValues().toString());
+          });
+        }
      </script>
 </body>
 
