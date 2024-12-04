@@ -24,11 +24,7 @@
           <section id="timer" class="timer">
                <div class="content">
                     <div class="timer-wrapper">
-                         <div class="timer-display">
-                              <span>00</span>
-                              <span>:</span>
-                              <span>00</span>
-                         </div>
+                         <div class="text-center card-body" id="basicUsage">00:00:34</div>
                          <div class="timer-controls">
                               <button class="start">Start</button>
                               <button class="stop">Stop</button>
@@ -128,8 +124,14 @@
           </section>
           </div>
      </main>
-     <script src="timer.js"></script>
-     <script src="script.js"></script>
+     <script src="node_modules/easytimer.js/dist/easytimer.min.js"></script>
+     <script>
+          var timerInstance = new easytimer.Timer();
+          timer.start(/* config */);
+          timer.addEventListener("secondsUpdated", function (e) {
+          $("#basicUsage").html(timer.getTimeValues().toString());
+          });
+     </script>
 </body>
 
 </html>
