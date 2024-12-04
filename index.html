@@ -6,6 +6,7 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>SkillUp</title>
      <link rel="stylesheet" href="css/style.css">
+     <script src="node_modules/easytimer.js/dist/easytimer.min.js"></script>
 </head>
 
 <body>
@@ -124,9 +125,10 @@
           </section>
           </div>
      </main>
-     <script src="node_modules/easytimer.js/dist/easytimer.min.js"></script>
      <script>
           var timerInstance = new easytimer.Timer();
+          console.log(timerInstance)
+
           timer.start(/* config */);
           timer.addEventListener("secondsUpdated", function (e) {
           $("#basicUsage").html(timer.getTimeValues().toString());
