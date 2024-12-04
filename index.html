@@ -34,16 +34,31 @@
                          </div>
                     </div>
                     <div class="random_player">
-                         <h1>Random Player</h1>
-                         <button class="random">Random</button>
-                         <div class="player"></
+                         <h3>Manage your team</h3>
+                         <input type="text" id="player-name" placeholder="Name">
+                         <select id="team-select">
+                              <option value="team1">Team 1</option>
+                              <option value="team2">Team 2</option>
+                         </select>
+                         <button id="add-player">Add player</button>
+                         <button id="shuffle-teams">Mix players</button>
+                         <div class="teams">
+                              <div>
+                                   <h2>Equipe 1</h2>
+                                   <ul id="team1-list"></ul>
+                              </div>
+                              <div>
+                                   <h2>Equipe 2</h2>
+                                   <ul id="team2-list"></ul>
+                              </div>
+                         </div>
                     </div>
                </div>
           </section>
           <section id="rules" class="rules">
                <div class="content">
-                    <h1>Rules</h1>
-                    <h3>SKILL RUSH - Rules of the game</h3>
+                    <h1 class="green">Rules</h1>
+                    <h3 class="blue">SKILL RUSH - Rules of the game</h3>
                     <strong>AGE :</strong> From 14 years old but is recommended to play from 17 years old
 
                     <strong>TIME :</strong> 15 to 30 minutes
@@ -158,6 +173,33 @@
 
           timer.addEventListener('reset', function (e) {
           $('.timer-wrapper .values').html(timer.getTimeValues().toString());
+          });
+
+          document.getElementById('add-player').addEventListener('click', function() {
+               var playerName = document.getElementById('player-name').value;
+               var team = document.getElementById('team-select').value;
+               if (playerName) {
+                    var list = document.getElementById(team + '-list');
+                    if (list.children.length < 10) {
+                         var listItem = document.createElement('li');
+                         listItem.textContent = playerName;
+                         list.appendChild(listItem);
+                         document.getElementById('player-name').value = '';
+                    } else {
+                         alert('L\'équipe est pleine.');
+                    }
+               }
+          });
+
+          document.getElementById('shuffle-teams').addEventListener('click', function() {
+               ['team1', 'team2'].forEach(function(team) {
+                    var list = document.getElementById(team + '-list');
+                    var players = Array.from(list.children);
+                    for (var i = players.length - 1; i > 0; i--) {
+                         var j = Math.floor(Math.random() * (i + 1));
+                         list.appendChild(players[j]);
+                    }
+               });
           });
         }
      </script>

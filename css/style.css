@@ -1,11 +1,12 @@
 @import url("normalize.css");
-@import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Inconsolata:wght@200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap');
 
 :root{
      --blue:;
      --orange:#EE7251;
      --orange-dark:#E2524B;
      --vert:#B4CD1B;
+     --blue:#01ADCA;
 }
 
 body{
@@ -72,6 +73,7 @@ section{
      width:100%;
      height: 100%;
      display: flex;
+     justify-content: center;
      scroll-snap-align: start; /* Modification de cette ligne */
 }
 
@@ -93,13 +95,33 @@ section{
      background-attachment: fixed;
 }
 
+.rules strong{
+     color:var(--blue);
+     font-family: 'Luckiest Guy', cursive;
+     font-weight: 400;
+     margin-top: 10px;
+}
+
 .rules .content{
      background-color:#fff;
      border-radius: 20px;
      padding: 60px;
-     margin-top:30px;
-     margin-bottom:30px;
+     margin:30px 20px;
      box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+}
+
+@media screen and (max-width: 780px){
+     h1{
+          font-size: 3em!important;
+     }
+
+     .rules .content{
+         padding: 30px;
+     }
+
+     .timer .content{
+          margin:30px 20px;
+     }
 }
 
 ul{
@@ -115,8 +137,51 @@ a{
      text-decoration: none;
 }
 
+@font-face {
+     font-family: 'Luckiest Guy'; 
+     src: url(../fonts/LuckiestGuy.ttf);
+}
+
 h1{
+     font-family: 'Luckiest Guy', cursive;
      font-size: 6em;
      margin-bottom: 10px;
      margin-top: 0;
+}
+
+.green{
+     color: var(--vert);
+}
+
+.blue{
+     color: var(--blue);
+}
+
+.random_player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.teams {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.teams div {
+    width: 45%;
+}
+
+.teams ul {
+    list-style: none;
+    padding: 0;
+}
+
+.teams li {
+    background: #f0f0f0;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
 }
