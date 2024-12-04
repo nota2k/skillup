@@ -35,8 +35,11 @@
                               <input type="text" id="player-name" placeholder="Name">
                          </div>
                          <button id="add-player">Add player</button>
+                         <button id="remove-player">Remove player</button>
+                         <button id="add-team">Add team</button>
+                         <button id="remove-team">Remove team</button>
                          <button id="shuffle-teams">Mix players</button>
-                         <div class="teams">
+                         <div class="teams" id="teams-container">
                               <div>
                                    <h2>Team 1</h2>
                                    <ul id="team1-list"></ul>
@@ -164,22 +167,58 @@
           document.getElementById('add-player').addEventListener('click', function() {
                var playerName = document.getElementById('player-name').value;
                var team = document.getElementById('team-select').value;
-               if (playerName) {
+               var totalPlayers = document.querySelectorAll('.teams ul li').length;
+               if (playerName && totalPlayers < 10) {
                     var list = document.getElementById(team + '-list');
-                    if (list.children.length < 10) {
-                         var listItem = document.createElement('li');
-                         listItem.textContent = playerName;
-                         list.appendChild(listItem);
-                         document.getElementById('player-name').value = '';
-                    } else {
-                         alert('L\'équipe est pleine.');
-                    }
+                    var listItem = document.createElement('li');
+                    listItem.textContent = playerName;
+                    list.appendChild(listItem);
+                    document.getElementById('player-name').value = '';
+               } else {
+                    alert('Maximum 10 players allowed.');
+               }
+          });
+
+          document.getElementById('remove-player').addEventListener('click', function() {
+               var team = document.getElementById('team-select').value;
+               var list = document.getElementById(team + '-list');
+               if (list.lastChild) {
+                    list.removeChild(list.lastChild);
+               }
+          });
+
+          document.getElementById('add-team').addEventListener('click', function() {
+               var teamsContainer = document.getElementById('teams-container');
+               var totalTeams = teamsContainer.children.length;
+               if (totalTeams < 5) {
+                    var newTeamNumber = totalTeams + 1;
+                    var newTeamDiv = document.createElement('div');
+                    newTeamDiv.innerHTML = `<h2>Team ${newTeamNumber}</h2><ul id="team${newTeamNumber}-list"></ul>`;
+                    teamsContainer.appendChild(newTeamDiv);
+                    var newOption = document.createElement('option');
+                    newOption.value = `team${newTeamNumber}`;
+                    newOption.textContent = `Team ${newTeamNumber}`;
+                    document.getElementById('team-select').appendChild(newOption);
+               } else {
+                    alert('Maximum 5 teams allowed.');
+               }
+          });
+
+          document.getElementById('remove-team').addEventListener('click', function() {
+               var teamsContainer = document.getElementById('teams-container');
+               var totalTeams = teamsContainer.children.length;
+               if (totalTeams > 2) {
+                    var lastTeam = teamsContainer.lastChild;
+                    teamsContainer.removeChild(lastTeam);
+                    var teamSelect = document.getElementById('team-select');
+                    teamSelect.removeChild(teamSelect.lastChild);
                }
           });
 
           document.getElementById('shuffle-teams').addEventListener('click', function() {
-               ['team1', 'team2'].forEach(function(team) {
-                    var list = document.getElementById(team + '-list');
+               var teamsContainer = document.getElementById('teams-container');
+               Array.from(teamsContainer.children).forEach(function(teamDiv) {
+                    var list = teamDiv.querySelector('ul');
                     var players = Array.from(list.children);
                     for (var i = players.length - 1; i > 0; i--) {
                          var j = Math.floor(Math.random() * (i + 1));
