@@ -1,0 +1,84 @@
+@import url("normalize.css");
+@import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Inconsolata:wght@200..900&display=swap');
+
+:root{
+     --blue:;
+     --orange:#EE7251;
+     --orange-dark:#E2524B;
+     --vert:#B4CD1B;
+}
+
+body{
+     font-family: Host Grotesk, sans-serif;
+}
+
+section{
+     width: 100%;
+     min-height: 100vh;
+}
+
+/* Header */
+header{
+     position: fixed;
+     top:0;
+     background: white;
+     width:100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     height: 80px;
+}
+
+.logo-wrapper{
+     width: 100%;
+     max-width: 120px;
+     height: 100%;
+     position: relative;
+     bottom:0;
+}
+
+/* Content */
+main{
+     margin-top:80px;
+     height: 100%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+}
+
+section{
+     width:100%;
+     height: 100%;
+     display: flex;
+}
+
+.content{
+     max-width: 1000px;
+     margin:0 auto;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+}
+
+.rules{
+     background-color: var(--orange);
+}
+
+.timer{
+     background-color: var(--vert);
+}
+
+ul{
+     display: inline-flex;
+     gap:20px;
+}
+
+li{
+     list-style: none;
+}
+
+a{
+     text-decoration: none;
+}
