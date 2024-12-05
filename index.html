@@ -58,7 +58,7 @@
                          </div>
                     </div>
                     <div class="timer-wrapper">
-                         <div class="values">00:00:00</div>
+                         <div class="values">00:00:30</div>
                          <div class="progess-bar">.</div>
                          <div class="timer-controls">
                               <button class="icon start"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-play"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg></button>
@@ -146,10 +146,6 @@
    // Execute function when body is loaded
           
         document.body.onload = function() {
-          // function startRotation(seconds) {
-          //   $('.timer-wrapper::after').style.transitionDuration = `${seconds}s`;
-          //   $('.timer-wrapper::after').style.transform = 'rotate(360deg)';
-          // }
           var timer  = new easytimer.Timer();
           var isPlaying = false;
           
@@ -170,6 +166,8 @@
 
           $('.timer-controls .reset').click(function () {
                timer.reset();
+               $('.timer-wrapper .values').html('00:00:30');
+               timer.pause();
                isPlaying = false;
                $('.timer-controls .start').html('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-play"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>');
           });
@@ -183,17 +181,17 @@
               $('.timer-wrapper .progress-bar').html($('.timer-wrapper .progress-bar').html() + '.');
           });
 
-          timer.addEventListener('started', function (e) {
-            $('.timer-wrapper .values').html(timer.getTimeValues().toString());
-          });
+          // timer.addEventListener('started', function (e) {
+          //   $('.timer-wrapper .values').html(timer.getTimeValues().toString());
+          // });
 
-          timer.addEventListener('reset', function (e) {
-               $('.timer-wrapper .values').html(timer.getTimeValues().toString());
-          });
+          // timer.addEventListener('reset', function (e) {
+          //      $('.timer-wrapper .values').html(timer.getTimeValues().toString());
+          // });
 
-          timer.addEventListener('targetAchieved', function (e) {
-            $('.timer-wrapper .progress-bar').html('COMPLETE!!');
-          });
+          // timer.addEventListener('targetAchieved', function (e) {
+          //   $('.timer-wrapper .progress-bar').html('COMPLETE!!');
+          // });
 
           document.getElementById('add-player').addEventListener('click', function() {
                var playerName = document.getElementById('player-name').value;
