@@ -144,9 +144,12 @@
      </main>
      <script>
    // Execute function when body is loaded
-   
-        document.body.onload = function() {
           
+        document.body.onload = function() {
+          // function startRotation(seconds) {
+          //   $('.timer-wrapper::after').style.transitionDuration = `${seconds}s`;
+          //   $('.timer-wrapper::after').style.transform = 'rotate(360deg)';
+          // }
           var timer  = new easytimer.Timer();
           var isPlaying = false;
           
@@ -173,6 +176,10 @@
      
           timer.addEventListener('secondsUpdated', function (e) {
                $('.timer-wrapper .values').html(timer.getTimeValues().toString());
+               let timerSeconds = timer.getTimeValues().seconds;
+               // console.log(timer.getTimeValues().seconds);
+               $('.timer-wrapper::after').style.transitionDuration = `${timerSeconds}s`;
+               $('.timer-wrapper::after').style.transform = 'rotate(360deg)';
               $('.timer-wrapper .progress-bar').html($('.timer-wrapper .progress-bar').html() + '.');
           });
 
