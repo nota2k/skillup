@@ -40,23 +40,40 @@ header{
 
 .timer-controls{
      display: flex;
-     flex-direction: column;
+     flex-direction: row;
+     gap:20px;
+     justify-content: center;
 }    
+
+.timer-controls .icon{
+     padding: 0;
+     border: 0;
+     background: none;
+     max-width: fit-content;
+}
+
+.timer-controls .icon svg{
+     width: 70px;
+     height: 70px;
+     color:white;
+}
 
 .values{
      font-size: 46px;
+     text-align: center;
 }
 
 button{
      appearance: none;
      box-shadow: none;
-     padding: 15px 40px;
-     min-width: 150px;
-     border: 2px solid #000;
+     padding: 10px 20px;
+     max-width: 200px;
+     border: none;
      background-color: var(--orange);
      margin: 10px 0;
      cursor: pointer;
      transition: all 0.3s;
+     border-radius: 5px;
 }
 
 button:hover{
@@ -116,9 +133,33 @@ section{
      min-width: 200px;
 }
 
+@media screen and (max-width: 780px){
+     .timer .content > div{
+          margin-left: 10px;
+               margin-right: 10px;
+     }
+
+     .timer .content > div{
+          width: 100%;
+     }
+     
+}
+
+.timer-wrapper{
+     border-radius: 100%;
+     aspect-ratio: 1/1;
+     background-color: var(--blue);
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+     color: white;
+}
+
 .team-manager{
      display: inline-flex;
      gap:20px;
+     flex-wrap: wrap;
 }
 
 input[type=text]{
@@ -126,7 +167,9 @@ input[type=text]{
      border-radius: 5px;
      box-shadow: none;
      border: none;
-     min-width: 300px;
+     min-width: 200px;
+     flex-grow: 2;
+     border: 2px solid var(--orange);
 }
 
 .rules{
@@ -195,7 +238,8 @@ h1{
 
 h2{
      font-size: 3em;
-     margin-bottom: 10px;
+     line-height: 0.9em;
+     margin-bottom: 20px;}
 }
 
 h3{
@@ -217,8 +261,15 @@ h2,h3{
 }
 
 .random_player {
-    display: flex;
-    flex-direction: column;
+     display: flex;
+     flex-direction: column;
+     background-color: #fff;
+     padding: 30px;
+     border-radius: 20px;
+}
+
+.random_player h2 {
+     color: var(--orange);
 }
 
 .teams {
@@ -230,13 +281,15 @@ h2,h3{
 }
 
 .teams div {
-    width: calc(100% - 30px);
-     min-width: 200px;
+     width: calc(45% - 30px);
+     min-width: 150px;
      flex-grow: 2;
 }
 
 .teams ul {
     list-style: none;
+    margin-top:10px;
+    margin-bottom:20px;
     padding: 0;
 }
 
@@ -246,5 +299,5 @@ h2,h3{
     padding: 10px;
     border-radius: 5px;
     display: inline;
-     margin-left: 5px;
+    margin: 5px 10px 5px 5px;
 }

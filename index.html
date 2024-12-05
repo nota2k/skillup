@@ -28,17 +28,24 @@
                     <div class="random_player">
                          <h2>Manage your team</h2>
                          <div class="team-manager">
+                              <input type="text" id="player-name" placeholder="Name">
                               <select id="team-select">
                                    <option value="team1">Team 1</option>
                                    <option value="team2">Team 2</option>
                               </select>
-                              <input type="text" id="player-name" placeholder="Name">
                          </div>
-                         <button id="add-player">Add player</button>
-                         <button id="remove-player">Remove player</button>
-                         <button id="add-team">Add team</button>
-                         <button id="remove-team">Remove team</button>
-                         <button id="shuffle-teams">Mix players</button>
+                         <div class="players-presets">
+                              <button id="add-player">Add player</button>
+                              <button id="remove-player">Remove player</button>
+                         </div>
+                         <div class="teams-presets">
+                              <h3>Teams</h3>
+                              <p>Maximum 10 players allowed</p>
+                              <button id="add-team">Add team</button>
+                              <button id="remove-team">Remove team</button>
+                         </div>
+                         <h3>Random orders</h3>
+                         <button id="shuffle-teams">Mix players <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dices"><rect width="12" height="12" x="2" y="10" rx="2" ry="2"/><path d="m17.92 14 3.5-3.5a2.24 2.24 0 0 0 0-3l-5-4.92a2.24 2.24 0 0 0-3 0L10 6"/><path d="M6 18h.01"/><path d="M10 14h.01"/><path d="M15 6h.01"/><path d="M18 9h.01"/></svg></button>
                          <div class="teams" id="teams-container">
                               <div>
                                    <h2>Team 1</h2>
@@ -52,10 +59,10 @@
                     </div>
                     <div class="timer-wrapper">
                          <div class="values">00:00:00</div>
+                         <div class="progess-bar">.</div>
                          <div class="timer-controls">
-                              <button class="start">Start</button>
-                              <button class="pause">Pause</button>
-                              <button class="reset">Reset</button>
+                              <button class="icon start"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-play"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg></button>
+                              <button class="icon reset"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-stop"><circle cx="12" cy="12" r="10"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg></button>
                          </div>
                     </div>
                </div>
@@ -139,9 +146,17 @@
    // Execute function when body is loaded
         document.body.onload = function() {
           var timer  = new easytimer.Timer();
+          var isPlaying = false;
           
           $('.timer-controls .start').click(function () {
-               timer.start({precision: 'seconds', startValues: {seconds: 0}, target: {seconds: 30}});
+               if (isPlaying) {
+                    timer.pause();
+                    $('.timer-controls .start').html('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-play"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>');
+               } else {
+                    timer.start({countdown: true, startValues: {seconds: 30}});
+                    $('.timer-controls .start').html('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-pause"><circle cx="12" cy="12" r="10"/><line x1="10" x2="10" y1="15" y2="9"/><line x1="14" x2="14" y1="15" y2="9"/></svg>');
+               }
+               isPlaying = !isPlaying;
           });
 
           $('.timer-controls .pause').click(function () {
@@ -150,18 +165,25 @@
 
           $('.timer-controls .reset').click(function () {
                timer.reset();
+               isPlaying = false;
+               $('.timer-controls .start').html('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-play"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>');
           });
      
           timer.addEventListener('secondsUpdated', function (e) {
-          $('.timer-wrapper .values').html(timer.getTimeValues().toString());
+               $('.timer-wrapper .values').html(timer.getTimeValues().toString());
+              $('.timer-wrapper .progress-bar').html($('.timer-wrapper .progress-bar').html() + '.');
           });
 
           timer.addEventListener('started', function (e) {
-          $('.timer-wrapper .values').html(timer.getTimeValues().toString());
+            $('.timer-wrapper .values').html(timer.getTimeValues().toString());
           });
 
           timer.addEventListener('reset', function (e) {
-          $('.timer-wrapper .values').html(timer.getTimeValues().toString());
+               $('.timer-wrapper .values').html(timer.getTimeValues().toString());
+          });
+
+          timer.addEventListener('targetAchieved', function (e) {
+            $('.timer-wrapper .progress-bar').html('COMPLETE!!');
           });
 
           document.getElementById('add-player').addEventListener('click', function() {
