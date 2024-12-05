@@ -32,6 +32,7 @@ header {
     align-items: center;
     height: 80px;
     gap: 50px;
+    z-index: 1000;
 }
 
 @media screen and (max-width:780px){
@@ -70,6 +71,10 @@ a {
     justify-content: center;
 }
 
+.timer-controls button{
+    min-width: fit-content;
+}
+
 .timer-controls .icon {
     padding: 0;
     border: 0;
@@ -91,14 +96,17 @@ a {
 button {
     appearance: none;
     box-shadow: none;
-    padding: 10px 20px;
-    max-width: 200px;
+    padding: 7px 15px;
+    min-width: 200px;
     border: none;
     background-color: var(--orange);
     margin: 10px 0;
     cursor: pointer;
     transition: all 0.3s;
     border-radius: 5px;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
     color: white;
 }
 
@@ -118,14 +126,7 @@ button:hover {
     color: var(--orange-dark);
 }
 
-#shuffle-teams {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-}
-
-#shuffle-teams svg {
+button svg {
     width: 40px;
     height: 40px;
 }
@@ -184,6 +185,20 @@ main {
     flex-direction: column;
     color: white;
     border: 15px solid white;
+    position:relative;
+}
+
+.timer-wrapper::after{
+     content: '';
+     display: block;
+     height: 7px;
+     width: 46%;
+     background: rgba(255,255,255,0.5);
+     position: absolute;
+     transform-origin: left;
+     left: 50%;
+     rotate: -90deg;
+     border-radius: 3px;
 }
 
 .team-manager {
@@ -207,6 +222,7 @@ input[type=text] {
     border-radius: 5px;
     border: 1px solid var(--orange);
     color: var(--orange-dark);
+    flex-grow: 2;
 }
 
 .rules {
@@ -278,6 +294,15 @@ h2, h3 {
 .random_player h3 {
     color: var(--orange);
     font-weight: 400;
+}
+
+.random_player h2::after{
+    content:'';
+    display: block;
+    width: 80%;
+    height: 2px;
+    background-color:var(--orange);
+    margin-top:5px;
 }
 
 .teams {
