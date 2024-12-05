@@ -188,8 +188,7 @@ main {
     position:relative;
 }
 
-.timer-wrapper::after{
-     content: '';
+.timer-wrapper .progress{
      display: block;
      height: 7px;
      width: 46%;

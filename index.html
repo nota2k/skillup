@@ -59,7 +59,7 @@
                     </div>
                     <div class="timer-wrapper">
                          <div class="values">00:00:30</div>
-                         <div class="progess-bar">.</div>
+                         <div class="progress"></div>
                          <div class="timer-controls">
                               <button class="icon start"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-play"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg></button>
                               <button class="icon reset"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-stop"><circle cx="12" cy="12" r="10"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg></button>
@@ -175,23 +175,11 @@
           timer.addEventListener('secondsUpdated', function (e) {
                $('.timer-wrapper .values').html(timer.getTimeValues().toString());
                let timerSeconds = timer.getTimeValues().seconds;
-               // console.log(timer.getTimeValues().seconds);
-               $('.timer-wrapper::after').style.transitionDuration = `${timerSeconds}s`;
-               $('.timer-wrapper::after').style.transform = 'rotate(360deg)';
-              $('.timer-wrapper .progress-bar').html($('.timer-wrapper .progress-bar').html() + '.');
+               
+               
+               $('.timer-wrapper .progress').style.transitionDuration = `${timerSeconds}s`;
+               $('.timer-wrapper .progress').style.transform = 'rotate(360deg)';
           });
-
-          // timer.addEventListener('started', function (e) {
-          //   $('.timer-wrapper .values').html(timer.getTimeValues().toString());
-          // });
-
-          // timer.addEventListener('reset', function (e) {
-          //      $('.timer-wrapper .values').html(timer.getTimeValues().toString());
-          // });
-
-          // timer.addEventListener('targetAchieved', function (e) {
-          //   $('.timer-wrapper .progress-bar').html('COMPLETE!!');
-          // });
 
           document.getElementById('add-player').addEventListener('click', function() {
                var playerName = document.getElementById('player-name').value;
