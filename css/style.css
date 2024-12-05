@@ -1,295 +1,303 @@
 @import url("normalize.css");
 @import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap');
 
-:root{
-     --blue:;
-     --orange:#F39552;
-     --orange-dark:#E2524B;
-     --vert:#B4CD1B;
-     --blue:#01ADCA;
+:root {
+    --blue: #01ADCA;
+    --orange: #F39552;
+    --orange-dark: #E2524B;
+    --vert: #B4CD1B;
 }
 
-body{
-     font-family: Host Grotesk, sans-serif;
-     font-size: 18px;
+body {
+    font-family: Host Grotesk, sans-serif;
+    font-size: 18px;
 }
 
-section{
-     width: 100%;
-     min-height: 100vh;
+section {
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    scroll-snap-align: start;
 }
 
-/* Header */
-header{
-     position: fixed;
-     top:0;
-     background: white;
-     width:100%;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     height: 80px;
-     gap: 50px;
+header {
+    position: fixed;
+    top: 0;
+    background: white;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    gap: 50px;
 }
 
-.logo-wrapper{
-     width: 100%;
-     height: 100%;
-     max-width: 120px;
+@media screen and (max-width:780px){
+    header{
+        background:rgba(255,255,255,0.9);        
+    }
 }
 
-.timer-controls{
-     display: flex;
-     flex-direction: row;
-     gap:20px;
-     justify-content: center;
-}    
-
-.timer-controls .icon{
-     padding: 0;
-     border: 0;
-     background: none;
-     max-width: fit-content;
+.logo-wrapper {
+    width: 100%;
+    height: 100%;
+    max-width: 120px;
 }
 
-.timer-controls .icon svg{
-     width: 70px;
-     height: 70px;
-     color:white;
+header nav a {
+    color: #000;
 }
 
-.values{
-     font-size: 46px;
-     text-align: center;
+nav ul {
+    display: inline-flex;
+    gap: 20px;
 }
 
-button{
-     appearance: none;
-     box-shadow: none;
-     padding: 10px 20px;
-     max-width: 200px;
-     border: none;
-     background-color: var(--orange);
-     margin: 10px 0;
-     cursor: pointer;
-     transition: all 0.3s;
-     border-radius: 5px;
+li {
+    list-style: none;
 }
 
-button:hover{
-     background-color: var(--orange-dark);
+a {
+    text-decoration: none;
 }
 
-/* Content */
-main{
-     margin-top:80px;
-     height: 100%;
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
-     overflow: auto;
-     min-height: 100vh;
-     scroll-snap-type: y proximity;
+.timer-controls {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
 }
 
-section{
-     width:100%;
-     height: 100%;
-     display: flex;
-     justify-content: center;
-     scroll-snap-align: start; /* Modification de cette ligne */
+.timer-controls .icon {
+    padding: 0;
+    border: 0;
+    background: none;
+    max-width: fit-content;
 }
 
-.content{
-     max-width: 1200px;
-     width: 100%;
-     margin:60px auto;
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
+.timer-controls .icon svg {
+    width: 70px;
+    height: 70px;
+    color: white;
 }
 
-.timer{
-     background:url('../img/background-orange.png') no-repeat center center/cover ;
-     background-attachment: fixed;
+.values {
+    font-size: 46px;
+    text-align: center;
 }
 
-.timer .content{
-     display: flex;
-     max-width: 1200px;
-     flex-direction: row;
-     flex-wrap: wrap;
-     align-items: flex-start;
-     justify-content: flex-start;
-     gap: 60px;
-     width: 100%;
+button {
+    appearance: none;
+    box-shadow: none;
+    padding: 10px 20px;
+    max-width: 200px;
+    border: none;
+    background-color: var(--orange);
+    margin: 10px 0;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 5px;
+    color: white;
 }
 
-.timer .content > div{
-     width:calc(45% - 60px);
-     flex-grow: 2;
-     flex-shrink: 2;
-     min-width: 200px;
+button:hover {
+    background-color: var(--orange-dark);
 }
 
-@media screen and (max-width: 780px){
-     .timer .content > div{
-          margin-left: 10px;
-               margin-right: 10px;
-     }
-
-     .timer .content > div{
-          width: 100%;
-     }
-     
+#remove-player {
+    background: transparent;
+    border: 2px solid var(--orange);
+    color: var(--orange);
+    font-weight: 500;
 }
 
-.timer-wrapper{
-     border-radius: 100%;
-     aspect-ratio: 1/1;
-     background-color: var(--blue);
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     flex-direction: column;
-     color: white;
+#remove-player:hover {
+    border-color: var(--orange-dark);
+    color: var(--orange-dark);
 }
 
-.team-manager{
-     display: inline-flex;
-     gap:20px;
-     flex-wrap: wrap;
+#shuffle-teams {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
 
-input[type=text]{
-     padding: 9px 15px;
-     border-radius: 5px;
-     box-shadow: none;
-     border: none;
-     min-width: 200px;
-     flex-grow: 2;
-     border: 2px solid var(--orange);
+#shuffle-teams svg {
+    width: 40px;
+    height: 40px;
 }
 
-.rules{
-     background:url('../img/background-bleu.png') no-repeat center center/cover;
-     background-attachment: fixed;
+main {
+    margin-top: 80px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    min-height: 100vh;
+    scroll-snap-type: y proximity;
 }
 
-.rules strong{
-     color:var(--blue);
-     font-family: 'Luckiest Guy', cursive;
-     font-weight: 400;
-     font-size: 24px;
-     margin-top: 10px;
+.content {
+    max-width: 1200px;
+    width: 100%;
+    margin: 60px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.rules .content{
-     background-color:#fff;
-     border-radius: 20px;
-     padding: 60px;
-     margin:60px 20px;
-     box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+.timer {
+    background: url('../img/background-orange.png') no-repeat center center/cover;
+    background-attachment: fixed;
 }
 
-.rules li{
-     list-style-type: disc;
+.timer .content {
+    display: flex;
+    max-width: 1200px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 60px;
+    width: 100%;
 }
 
-@media screen and (max-width: 780px){
-     h1{
-          font-size: 3em!important;
-     }
-
-     .rules .content{
-         padding: 30px;
-     }
-
-     .timer .content{
-          margin:30px 20px;
-     }
+.timer .content > div {
+    width: calc(45% - 60px);
+    flex-grow: 2;
+    flex-shrink: 2;
+    min-width: 200px;
 }
 
-nav ul{
-     display: inline-flex;
-     gap:20px;
+.timer-wrapper {
+    border-radius: 100%;
+    aspect-ratio: 1/1;
+    background-color: var(--blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    border: 15px solid white;
 }
 
-li{
-     list-style: none;
+.team-manager {
+    display: inline-flex;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
-a{
-     text-decoration: none;
+input[type=text] {
+    padding: 9px 15px;
+    border-radius: 5px;
+    box-shadow: none;
+    border: none;
+    min-width: 200px;
+    flex-grow: 2;
+    border: 2px solid var(--orange);
 }
 
-@font-face {
-     font-family: 'Luckiest Guy'; 
-     src: url(../fonts/LuckiestGuy.ttf);
+#team-select {
+    background-color: transparent;
+    border-radius: 5px;
+    border: 1px solid var(--orange);
+    color: var(--orange-dark);
 }
 
-h1{
-     font-family: 'Luckiest Guy', cursive;
-     font-size: 6em;
-     margin-bottom: 10px;
-     margin-top: 0;
+.rules {
+    background: url('../img/background-bleu.png') no-repeat center center/cover;
+    background-attachment: fixed;
 }
 
-h2{
-     font-size: 3em;
-     line-height: 0.9em;
-     margin-bottom: 20px;}
+.rules strong {
+    color: var(--blue);
+    font-family: 'Luckiest Guy', cursive;
+    font-weight: 400;
+    font-size: 24px;
+    margin-top: 10px;
 }
 
-h3{
-     font-size: 34px;
-     margin-bottom:5px;
+.rules .content {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 60px;
+    margin: 60px 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
 }
 
-h2,h3{
-     font-family: 'Luckiest Guy', cursive;
-     margin-top: 0;
+.rules li {
+    list-style-type: disc;
 }
 
-.green{
-     color: var(--vert);
+h1 {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 6em;
+    margin-bottom: 10px;
+    margin-top: 0;
 }
 
-.blue{
-     color: var(--blue);
+h2 {
+    font-size: 3em;
+    line-height: 0.9em;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 34px;
+}
+
+h2, h3 {
+    font-family: 'Luckiest Guy', cursive;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.green {
+    color: var(--vert);
+}
+
+.blue {
+    color: var(--blue);
 }
 
 .random_player {
-     display: flex;
-     flex-direction: column;
-     background-color: #fff;
-     padding: 30px;
-     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    gap: 20px;
 }
 
-.random_player h2 {
-     color: var(--orange);
+.random_player h2,
+.random_player h3 {
+    color: var(--orange);
+    font-weight: 400;
 }
 
 .teams {
     display: flex;
-     justify-content: space-around;
-     width: 100%;
-     margin-top: 20px;
-     flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 20px;
+    flex-wrap: wrap;
 }
 
 .teams div {
-     width: calc(45% - 30px);
-     min-width: 150px;
-     flex-grow: 2;
+    width: calc(45% - 30px);
+    min-width: 150px;
+    flex-grow: 2;
 }
 
 .teams ul {
     list-style: none;
-    margin-top:10px;
-    margin-bottom:20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
     padding: 0;
 }
 
@@ -300,4 +308,33 @@ h2,h3{
     border-radius: 5px;
     display: inline;
     margin: 5px 10px 5px 5px;
+}
+
+@font-face {
+    font-family: 'Luckiest Guy';
+    src: url(../fonts/LuckiestGuy.ttf);
+}
+
+@media screen and (max-width: 780px) {
+    h1 {
+        font-size: 3em !important;
+    }
+
+    .rules .content {
+        padding: 30px;
+    }
+
+    .timer .content {
+        margin: 30px 20px;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    .timer .content > div {
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 100%;
+    }
 }
